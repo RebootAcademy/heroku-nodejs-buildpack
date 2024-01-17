@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
-cd back
 ### Configure environment
 
 set -o errexit    # always exit on error
@@ -16,6 +15,8 @@ unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 BPLOG_PREFIX="buildpack.nodejs"
 
 ### Configure directories
+
+cd "$BUILD_DIR/back"
 
 BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
