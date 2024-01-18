@@ -21,8 +21,6 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd "$(dirname "${0:-}")"; cd ..; pwd)
 
-cd "$BUILD_DIR/back"
-
 ### Load dependencies
 
 # shellcheck source=lib/vendor/stdlib_v7.sh
@@ -100,9 +98,9 @@ meta_set "build-step" "init"
 
 ### Check initial state
 
-[ -e "$BUILD_DIR/node_modules" ] && PREBUILD=true || PREBUILD=false
-[ -f "$BUILD_DIR/yarn.lock" ] && YARN=true || YARN=false
-[ -f "$BUILD_DIR/package-lock.json" ] && NPM_LOCK=true || NPM_LOCK=false
+[ -e "$BUILD_DIR/back/node_modules" ] && PREBUILD=true || PREBUILD=false
+[ -f "$BUILD_DIR/back/yarn.lock" ] && YARN=true || YARN=false
+[ -f "$BUILD_DIR/back/package-lock.json" ] && NPM_LOCK=true || NPM_LOCK=false
 YARN_2=$(detect_yarn_2 "$YARN" "$BUILD_DIR")
 
 ### Save build info
